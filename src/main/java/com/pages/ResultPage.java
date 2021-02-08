@@ -36,7 +36,7 @@ public class ResultPage {
 	}
 	
 	
-	public void verifyAddedTask(List<String> tasks)
+	public boolean verifyAddedTask(List<String> tasks)
 	{
 		
 		ArrayList<WebElement> taskselements = (ArrayList<WebElement>) driver.findElements(labelTasks);	
@@ -50,13 +50,14 @@ public class ResultPage {
 			tasknames.add(taskselements.get(j).getText());		
 		}		
 		
-		
+		boolean result = false;
 		for(int i=0;i<tasks.size();i++)
 		{
-			boolean result=tasknames.contains(tasks.get(i));
-			Assert.assertTrue(result);
+			result=tasknames.contains(tasks.get(i));
+			
+			
 		}
-				
+		return result;
 	}
 	
 	public void verifyDeletedTask(List<String> tasks)

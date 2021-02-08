@@ -22,11 +22,10 @@ private WebDriver driver;
 	}
 	
 	
-	public void verifyCreatePage() 
+	public String getCreatePageTitle() 
 	{
-		   String actual=driver.getCurrentUrl();
-		   String expected="https://dailytodo.org/create";
-		   Assert.assertEquals(actual,expected);
+		   return driver.getCurrentUrl();
+		   
 	}
 	
 	

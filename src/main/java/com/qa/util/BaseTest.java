@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.qa.factory.DriverFactory;
 
 public class BaseTest {
@@ -13,8 +15,12 @@ public class BaseTest {
 	
 	DriverFactory dr = new DriverFactory();
 	ConfigReader cr=new ConfigReader();
+	//*public static ExtentReports extentReport;
+	//*public static ExtentSparkReporter sparkReporter;
+	public static ExtentReports extentReport = new ExtentReports();
+	public static ExtentSparkReporter sparkReporter = new ExtentSparkReporter("Spark.html");
 	
-	
+		
 	
 	public  void startApp()
 	{
@@ -24,6 +30,7 @@ public class BaseTest {
 		dr.init_driver(browser);
 		DriverFactory.getDriver().get(url);
 		DriverFactory.getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(waitTime),TimeUnit.SECONDS);
+		extentReport.attachReporter(sparkReporter);
 		
 		
 	}
